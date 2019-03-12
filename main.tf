@@ -26,11 +26,16 @@ resource "aws_instance" "web" {
   ami           = "ami-0a313d6098716f372" # Current Canonical Bionic 18.04 image
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = ["${aws_vpc.main.default_security_group_id}"]
-  subnet_id              = "${aws_subnet.main.id}"
+  vpc_security_group_ids      = ["${aws_vpc.main.default_security_group_id}"]
+  subnet_id                   = "${aws_subnet.main.id}"
+  associate_public_ip_address = true
 
   tags = {
     Name        = "awsmeetup-ec2-web"
     Environment = "awsmeetup"
   }
+}
+
+output "aws-machine" {
+  value = "${aws_instance.web.public_ip}"
 }
