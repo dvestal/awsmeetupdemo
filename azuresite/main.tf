@@ -2,10 +2,6 @@ provider "azurerm" {
   version = "~> 1.23"
 }
 
-variable "prefix" {
-  default = "awsmeetup"
-}
-
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
   location = "Central US"
@@ -87,8 +83,4 @@ resource "azurerm_public_ip" "test" {
   tags = {
     environment = "test"
   }
-}
-
-output "azure-machine" {
-  value = "${azurerm_public_ip.test.ip_address}"
 }
