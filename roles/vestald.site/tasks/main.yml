@@ -1,0 +1,14 @@
+---
+- name: Not every distro creates /var/www/html
+  file:
+      path: /var/www/html
+      state: directory
+
+- name: Setup a blurry site
+  template:
+      src: html/index.html.j2
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+  notify: nginx restart

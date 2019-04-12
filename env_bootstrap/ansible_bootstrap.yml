@@ -1,0 +1,14 @@
+---
+- hosts: aws
+  remote_user: ubuntu
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Bootstrap link python3 to python
+      raw: ln -s /usr/bin/python3 /usr/bin/python
+
+- hosts: digitalocean, linode
+  gather_facts: no
+  tasks:
+    - name: Bootstrap install python
+      raw: apt-get update && apt-get install -y python

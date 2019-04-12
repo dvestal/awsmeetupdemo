@@ -1,21 +1,31 @@
 [aws]
-${aws_address}
+aws-web-1 ansible_host=${aws_address} ansible_user=ubuntu
 
 [azure]
-${azure_address}
+azure-web-1 ansible_host=${azure_address} ansible_user=ubuntu
 
 [gcp]
-${gcp_address}
+gcp-web-1 ansible_host=${gcp_address} ansible_user=ubuntu
 
 [linode]
-${linode_address}
+linode-web-1 ansible_host=${linode_address} ansible_user=root
 
 [digitalocean]
-${do_address}
+digitalocean-web-1 ansible_host=${do_address} ansible_user=root
 
-[all]
-${aws_address}
-${azure_address}
-${gcp_address}
-${linode_address}
-${do_address}
+;; Group Variables
+
+[all:vars]
+background_color=white
+
+[aws:vars]
+background_color=lightblue
+
+[azure:vars]
+background_color=darkblue
+
+[gcp:vars]
+background_color=orange
+
+[linode:vars]
+background_color=gray
